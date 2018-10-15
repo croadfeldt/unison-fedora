@@ -1,0 +1,18 @@
+diff -ru unison-2.51.2.orig/uigtk2.ml unison-2.51.2/uigtk2.ml
+--- unison-2.51.2.orig/uigtk2.ml	2018-01-27 14:53:44.000000000 -0600
++++ unison-2.51.2/uigtk2.ml	2018-10-15 11:32:25.247160237 -0500
+@@ -89,12 +89,12 @@
+ (* This does not work with the current version of Lablgtk, due to a bug
+ let icon =
+   GdkPixbuf.from_data ~width:48 ~height:48 ~has_alpha:true
+-    (Gpointer.region_of_string Pixmaps.icon_data)
++    (Gpointer.region_of_bytes Pixmaps.icon_data)
+ *)
+ let icon =
+   let p = GdkPixbuf.create ~width:48 ~height:48 ~has_alpha:true () in
+   Gpointer.blit
+-    (Gpointer.region_of_string Pixmaps.icon_data) (GdkPixbuf.get_pixels p);
++    (Gpointer.region_of_bytes Pixmaps.icon_data) (GdkPixbuf.get_pixels p);
+   p
+ 
+ let leftPtrWatch =
