@@ -30,10 +30,10 @@ Summary:   Multi-master File synchronization tool
 
 Group:     Applications/File
 License:   GPLv3+
-URL:       http://www.cis.upenn.edu/~bcpierce/unison
-Source0:   http://www.cis.upenn.edu/~bcpierce/unison/download/releases/unison-%{version}/unison-%{version}.tar.gz
+URL:       https://www.cis.upenn.edu/~bcpierce/unison
+Source0:   https://www.cis.upenn.edu/~bcpierce/unison/download/releases/unison-%{version}/unison-%{version}.tar.gz
 Source1:   unison.png
-Source2:   http://www.cis.upenn.edu/~bcpierce/unison/download/releases/unison-%{ver_compat}%{ver_noncompat}/unison-%{ver_compat}%{ver_noncompat}-manual.html
+Source2:   https://www.cis.upenn.edu/~bcpierce/unison/download/releases/unison-%{ver_compat}%{ver_noncompat}/unison-%{ver_compat}%{ver_noncompat}-manual.html
 
 Patch0: unison-%{ver_compat}%{ver_noncompat}-lablgtk.2.18.6-fix.patch
 
