@@ -23,7 +23,7 @@
 
 Name:      unison%{ver_compat_name}
 Version:   %{ver_compat}%{ver_noncompat}
-Release:   1%{?dist}
+Release:   2%{?dist}
 #Release:   1
 
 Summary:   Multi-master File synchronization tool
@@ -95,6 +95,18 @@ Provides:   %{name}-ui = %{version}-%{release}
 This package provides the textual version of unison without graphical interface.
 
 
+%package fsmonitor
+
+Summary:   Multi-master File synchronization tool - fsmonitor
+
+Requires: %name = %{version}-%{release}
+
+Provides:   %{name}-fsmonitor = %{version}-%{release}
+
+%description fsmonitor
+This package provides the fsmonitor functionality of unison.
+
+
 %prep
 %setup -q -n unison-%{version}
 
@@ -138,6 +150,8 @@ ln -s %{_bindir}/unison-gtk-%{ver_compat} %{buildroot}%{_bindir}/unison-%{ver_co
 
 cp -a unison-text %{buildroot}%{_bindir}/unison-text-%{ver_compat}
 
+cp -a unison-fsmonitor %{buildroot}%{_bindir}/unison-fsmonitor-%{ver_compat}
+
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 cp -a %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
@@ -178,6 +192,21 @@ if [ $1 -eq 0 ]; then
     %{_bindir}/unison-text-%{ver_compat}
 fi
 
+%posttrans fsmonitor
+alternatives \
+  --install \
+  %{_bindir}/unison-fsmonitor \
+  unison-fsmonitor \
+  %{_bindir}/unison-fsmonitor-%{ver_compat} \
+  %{ver_priority}
+
+
+%postun fsmonitor
+if [ $1 -eq 0 ]; then
+  alternatives --remove unison-fsmonitor \
+    %{_bindir}/unison-fsmonitor-%{ver_compat}
+fi
+
 
 %files
 %doc COPYING NEWS README unison-manual.html
@@ -195,8 +224,14 @@ fi
 %ghost %{_bindir}/unison
 %{_bindir}/unison-text-%{ver_compat}
 
+%files fsmonitor
+%ghost %{_bindir}/unison-fsmonitor
+%{_bindir}/unison-fsmonitor-%{ver_compat}
 
 %changelog
+* Fri Jun 7 2019 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.2-2
+- Added unison-fsmonitor package.
+
 * Mon Oct 15 2018 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.2-1
 - Updated to version 2.51.2 from http://www.cis.upenn.edu/~bcpierce/unison/download/releases/unison-2.51.2/unison-2.51.2.tar.gz
 
