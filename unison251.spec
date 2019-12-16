@@ -10,6 +10,8 @@
 %global ver_compat      %{ver_maj}.%{ver_min}
 %global ver_compat_name %{ver_maj}%{ver_min}
 %global ver_noncompat   .%{ver_patch}
+%global commit 26a29f79487484b7982c85e0dc879cf7aaaf584f
+%global shortcommit 26a29f7
 
 # ver_priority is the first component of ver_compat, catenated with the second
 # component of ver_compat zero-filled to 3 digits, catenated with a final
@@ -23,7 +25,7 @@
 
 Name:      unison%{ver_compat_name}
 Version:   %{ver_compat}%{ver_noncompat}
-Release:   3-26a29f7%{?dist}
+Release:   3.%{shortcommit}%{?dist}
 #Release:   1
 
 Summary:   Multi-master File synchronization tool
@@ -31,11 +33,11 @@ Summary:   Multi-master File synchronization tool
 Group:     Applications/File
 License:   GPLv3+
 URL:       https://www.cis.upenn.edu/~bcpierce/unison
-Source0:   https://github.com/bcpierce00/unison/commit/26a29f79487484b7982c85e0dc879cf7aaaf584f.tar.gz
+Source0:   https://github.com/bcpierce00/unison/archive/%{commit}.tar.gz
 Source1:   unison.png
 Source2:   https://www.cis.upenn.edu/~bcpierce/unison/download/releases/unison-%{ver_compat}%{ver_noncompat}/unison-%{ver_compat}%{ver_noncompat}-manual.html
 
-Patch0: unison-%{ver_compat}%{ver_noncompat}-lablgtk.2.18.6-fix.patch
+#Patch0: unison-%{ver_compat}%{ver_noncompat}-lablgtk.2.18.6-fix.patch
 
 # can't make this noarch (rpmbuild fails about unpackaged debug files)
 # BuildArch:     noarch
@@ -108,9 +110,9 @@ This package provides the fsmonitor functionality of unison.
 
 
 %prep
-%setup -q -n unison-%{version}
+%setup -q -n unison-%{commit}
 
-%patch0 -p1
+#%patch0 -p1
 
 cat > %{name}.desktop <<EOF
 [Desktop Entry]
@@ -135,11 +137,11 @@ unset MAKEFLAGS
 
 # we compile 2 versions: gtk2 ui and text ui
 make NATIVE=true UISTYLE=gtk2 THREADS=true
-mv unison unison-gtk
+mv src/unison unison-gtk
 
 make NATIVE=true UISTYLE=text THREADS=true
-mv unison unison-text
-
+mv src/unison unison-text
+mv src/unison-fsmonitor unison-fsmonitor
 
 %install
 mkdir -p %{buildroot}%{_bindir}
@@ -209,7 +211,8 @@ fi
 
 
 %files
-%doc COPYING NEWS README unison-manual.html
+#%doc COPYING NEWS README unison-manual.html
+%doc README.md unison-manual.html
 
 
 %files gtk
@@ -230,7 +233,9 @@ fi
 
 %changelog
 * Sun Dec 15 2019 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.2-3-26a29f7
-- Update to https://github.com/bcpierce00/unison commit 26a29f79487484b7982c85e0dc879cf7aaaf584f for ocaml 4.08 compatibility.
+- Update to https://github.com/bcpierce00/unison commit 26a29f79487484b7982c85e0dc879cf7aaaf584f for updated copyright, code tidyness and primarily ocaml 4.08 compatibility.
+- Removed patch for labelgtk patch, no longer needed.
+- Updated spec file for compatibility with commit 26a29f79487484b7982c85e0dc879cf7aaaf584f
 
 * Fri Jun 7 2019 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.2-2
 - Added unison-fsmonitor package.
