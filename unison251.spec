@@ -1,7 +1,7 @@
 # These is the exact upstream version we are packaging
 %global ver_maj 2
 %global ver_min 51
-%global ver_patch 2
+%global ver_patch 3
 
 # All Unison versions sharing ver_compat are compatible
 # Examples are 2.13.15 and 2.13.16 -> ver_compat == 2.13
@@ -25,7 +25,7 @@
 
 Name:      unison%{ver_compat_name}
 Version:   %{ver_compat}%{ver_noncompat}
-Release:   3.%{shortcommit}%{?dist}
+Release:   1.%{shortcommit}%{?dist}
 #Release:   1
 
 Summary:   Multi-master File synchronization tool
@@ -232,8 +232,8 @@ fi
 %{_bindir}/unison-fsmonitor-%{ver_compat}
 
 %changelog
-* Sun Dec 15 2019 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.2-3-26a29f7
-- Update to https://github.com/bcpierce00/unison commit 26a29f79487484b7982c85e0dc879cf7aaaf584f for updated copyright, code tidyness and primarily ocaml 4.08 compatibility.
+* Sun Dec 15 2019 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.3-1_26a29f7
+- Update to https://github.com/bcpierce00/unison commit 26a29f79487484b7982c85e0dc879cf7aaaf584f for updated copyright, code tidyness and primarily ocaml 4.08 compatibility. This is labeled as 2.51.3 in unison binaries, package version updated accordingly.
 - Removed patch for labelgtk patch, no longer needed.
 - Updated spec file for compatibility with commit 26a29f79487484b7982c85e0dc879cf7aaaf584f
 
