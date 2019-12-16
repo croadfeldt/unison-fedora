@@ -23,7 +23,7 @@
 
 Name:      unison%{ver_compat_name}
 Version:   %{ver_compat}%{ver_noncompat}
-Release:   2%{?dist}
+Release:   3-26a29f7%{?dist}
 #Release:   1
 
 Summary:   Multi-master File synchronization tool
@@ -229,6 +229,9 @@ fi
 %{_bindir}/unison-fsmonitor-%{ver_compat}
 
 %changelog
+* Sun Dec 15 2019 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.2-3-26a29f7
+- Update to https://github.com/bcpierce00/unison commit 26a29f79487484b7982c85e0dc879cf7aaaf584f for ocaml 4.08 compatibility.
+
 * Fri Jun 7 2019 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.2-2
 - Added unison-fsmonitor package.
 
