@@ -27,7 +27,7 @@
 Name:      unison%{ver_compat_name}
 Version:   %{ver_compat}%{ver_noncompat}
 #Release:   2%{?dist}
-Release:   2.20200805git%{shortcommit}%{?dist}
+Release:   3.20200805git%{shortcommit}%{?dist}
 
 
 Summary:   Multi-master File synchronization tool
@@ -36,10 +36,7 @@ Group:     Applications/File
 License:   GPLv3+
 URL:       https://www.cis.upenn.edu/~bcpierce/unison
 Source0:   https://github.com/bcpierce00/unison/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
-#Source0:   https://www.cis.upenn.edu/~bcpierce/unison/download/releases/unison-%{version}/unison-%{version}.tar.gz
-Source1:   unison.png
 Source2:   https://www.cis.upenn.edu/~bcpierce/unison/download/releases/beta/unison-manual.html
-#Source2:   https://www.cis.upenn.edu/~bcpierce/unison/download/releases/unison-%{ver_compat}%{ver_noncompat}/unison-%{ver_compat}%{ver_noncompat}-manual.html
 
 Patch0: https://github.com/bcpierce00/unison/commit/acbce4327d40842f10d286aa61579338613c91dd.patch
 
@@ -159,7 +156,7 @@ cp -a unison-text %{buildroot}%{_bindir}/unison-text-%{ver_compat}
 cp -a unison-fsmonitor %{buildroot}%{_bindir}/unison-fsmonitor-%{ver_compat}
 
 mkdir -p %{buildroot}%{_datadir}/pixmaps
-cp -a %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
+cp -a icons/U.256x256x16m.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 desktop-file-install --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
