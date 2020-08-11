@@ -232,6 +232,12 @@ fi
 %{_bindir}/unison-fsmonitor-%{ver_compat}
 
 %changelog
+* Tue Aug 11 2020 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.3-3.20200805gitb7676c3
+- Fixed GTK package with PR submitted by Dennis Wagelaar
+- Corrected snapshot date.
+- Use icon from source package
+- Removed unused sources.
+
 * Wed Aug 5 2020 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.3-2.20200905gitb7676c3
 - Updated to git commit b7676c3526a4ea082f78f0d1b849694856603c03
 
