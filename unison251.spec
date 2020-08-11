@@ -139,10 +139,10 @@ cp -a %{SOURCE2} unison-manual.html
 #unset MAKEFLAGS
 
 # we compile 2 versions: gtk2 ui and text ui
-make NATIVE=true UISTYLE=gtk2 THREADS=true
+make src NATIVE=true UISTYLE=gtk2 THREADS=true
 mv src/unison unison-gtk
 
-make NATIVE=true UISTYLE=text THREADS=true
+make src NATIVE=true UISTYLE=text THREADS=true
 mv src/unison unison-text
 
 mv src/unison-fsmonitor unison-fsmonitor
