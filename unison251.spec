@@ -1,4 +1,4 @@
-%global commit b7676c3526a4ea082f78f0d1b849694856603c03
+%global commit f215b64e9ef59ba3453038d7700f63baee0740bf
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 # These is the exact upstream version we are packaging
@@ -27,7 +27,7 @@
 Name:      unison%{ver_compat_name}
 Version:   %{ver_compat}%{ver_noncompat}
 #Release:   2%{?dist}
-Release:   3.20200805git%{shortcommit}%{?dist}
+Release:   4.git%{shortcommit}%{?dist}
 
 
 Summary:   Multi-master File synchronization tool
@@ -232,6 +232,12 @@ fi
 %{_bindir}/unison-fsmonitor-%{ver_compat}
 
 %changelog
+* Mon Dec 21 2020 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.4-gitf215b64e
+- Various MacOS code cleanups and dependecy fixes.
+- UI updates
+- Logging updates
+- Functionality improvements too numerous to detail.
+
 * Tue Aug 11 2020 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.3-3.20200805gitb7676c3
 - Fixed GTK package with PR submitted by Dennis Wagelaar
 - Corrected snapshot date.
