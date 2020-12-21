@@ -27,7 +27,7 @@
 Name:      unison%{ver_compat_name}
 Version:   %{ver_compat}%{ver_noncompat}
 #Release:   2%{?dist}
-Release:   4.git%{shortcommit}%{?dist}
+Release:   6.git%{shortcommit}%{?dist}
 
 
 Summary:   Multi-master File synchronization tool
@@ -38,7 +38,6 @@ URL:       https://www.cis.upenn.edu/~bcpierce/unison
 Source0:   https://github.com/bcpierce00/unison/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 Source2:   https://www.cis.upenn.edu/~bcpierce/unison/download/releases/beta/unison-manual.html
 
-Patch0: https://github.com/bcpierce00/unison/commit/acbce4327d40842f10d286aa61579338613c91dd.patch
 
 # can't make this noarch (rpmbuild fails about unpackaged debug files)
 # BuildArch:     noarch
@@ -62,7 +61,8 @@ Note that this package contains Unison version %{ver_compat}, and
 will never be upgraded to a different major version. Other packages
 exist if you require a different major version.
 
-
+%if 0%{?el8}
+%else
 %package gtk
 
 Summary:   Multi-master File synchronization tool - gtk interface
@@ -84,7 +84,7 @@ Provides: unison = %{version}-%{release}
 
 %description gtk
 This package provides the graphical version of unison with gtk2 interface.
-
+%endif
 
 %package text
 
@@ -97,6 +97,17 @@ Provides:   %{name}-ui = %{version}-%{release}
 %description text
 This package provides the textual version of unison without graphical interface.
 
+%package static-ocaml-4.08.1
+
+Summary:   Multi-master File synchronization tool - text interface
+
+BuildRequires: emacs glibc-static
+Requires: %name = %{version}-%{release}
+
+Provides:   %{name}-ui = %{version}-%{release}
+
+%description static-ocaml-4.08.1
+This package provides the textual version of unison without graphical interface and statically linked to ocaml 4.08.1.
 
 %package fsmonitor
 
@@ -113,7 +124,7 @@ This package provides the fsmonitor functionality of unison.
 %prep
 %setup -q -n unison-%{commit}
 
-%patch0 -p1
+#%patch0 -p1
 
 cat > %{name}.desktop <<EOF
 [Desktop Entry]
@@ -135,9 +146,12 @@ cp -a %{SOURCE2} unison-manual.html
 # MAKEFLAGS=-j<N> breaks the build.
 #unset MAKEFLAGS
 
+%if 0%{?el8}
+%else
 # we compile 2 versions: gtk2 ui and text ui
 make src NATIVE=true UISTYLE=gtk2 THREADS=true
 mv src/unison unison-gtk
+%endif
 
 make src NATIVE=true UISTYLE=text THREADS=true
 mv src/unison unison-text
@@ -147,24 +161,31 @@ mv src/unison-fsmonitor unison-fsmonitor
 %install
 mkdir -p %{buildroot}%{_bindir}
 
+%if 0%{?el8}
+%else
 cp -a unison-gtk %{buildroot}%{_bindir}/unison-gtk-%{ver_compat}
 # symlink for compatibility
 ln -s %{_bindir}/unison-gtk-%{ver_compat} %{buildroot}%{_bindir}/unison-%{ver_compat}
+%endif
 
 cp -a unison-text %{buildroot}%{_bindir}/unison-text-%{ver_compat}
 
 cp -a unison-fsmonitor %{buildroot}%{_bindir}/unison-fsmonitor-%{ver_compat}
 
+%if 0%{?el8}
+%else
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 cp -a icons/U.256x256x16m.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 desktop-file-install --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
+%endif
 
 # create/own alternatives target
 touch %{buildroot}%{_bindir}/unison
 
-
+%if 0%{?el8}
+%else
 %posttrans gtk
 alternatives \
   --install \
@@ -178,7 +199,7 @@ if [ $1 -eq 0 ]; then
   alternatives --remove unison \
     %{_bindir}/unison-%{ver_compat}
 fi
-
+%endif
 
 %posttrans text
 alternatives \
@@ -214,14 +235,15 @@ fi
 %files
 %doc src/COPYING src/NEWS src/README unison-manual.html
 
-
+%if 0%{?el8}
+%else
 %files gtk
 %ghost %{_bindir}/unison
 %{_bindir}/unison-gtk-%{ver_compat}
 %{_bindir}/unison-%{ver_compat}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
-
+%endif
 
 %files text
 %ghost %{_bindir}/unison
@@ -237,6 +259,13 @@ fi
 - UI updates
 - Logging updates
 - Functionality improvements too numerous to detail.
+
+* Sat Nov 14 2020 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.3-5-20201114git54d8e79
+- Update to unison source git commit to 54d8e790c8f52d0ebe27a0f32a678153b3c6f31f
+
+* Mon Sep 14 2020 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.3-4.20200914gitec65329
+- Don't build gtk version for RHEL 8 variants, due to missing ocaml-libgtk-devel package.
+- Update to unison source git commit to ec65329df28074e28d2831087460a7d4a430e3ad
 
 * Tue Aug 11 2020 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.3-3.20200805gitb7676c3
 - Fixed GTK package with PR submitted by Dennis Wagelaar
