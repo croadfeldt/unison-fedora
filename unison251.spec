@@ -1,10 +1,10 @@
-%global commit f215b64e9ef59ba3453038d7700f63baee0740bf
+%global commit 5f6a085d9193ee1343969cd03362d797f3cc27ab
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 # These is the exact upstream version we are packaging
 %global ver_maj 2
 %global ver_min 51
-%global ver_patch 3
+%global ver_patch 4
 
 # All Unison versions sharing ver_compat are compatible
 # Examples are 2.13.15 and 2.13.16 -> ver_compat == 2.13
@@ -27,7 +27,7 @@
 Name:      unison%{ver_compat_name}
 Version:   %{ver_compat}%{ver_noncompat}
 #Release:   2%{?dist}
-Release:   6.git%{shortcommit}%{?dist}
+Release:   1.git%{shortcommit}%{?dist}
 
 
 Summary:   Multi-master File synchronization tool
@@ -254,6 +254,12 @@ fi
 %{_bindir}/unison-fsmonitor-%{ver_compat}
 
 %changelog
+* Thu Jan 28 2021 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.4-1.git5f6a085d
+- Updated to rc1 of 2.51.
+- MacOS deployment fixes
+- ANSI color fixes
+- Code duplication cleanups.
+
 * Mon Dec 21 2020 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.4-gitf215b64e
 - Various MacOS code cleanups and dependecy fixes.
 - UI updates
