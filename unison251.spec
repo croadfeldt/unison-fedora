@@ -27,7 +27,7 @@
 Name:      unison%{ver_compat_name}
 Version:   %{ver_compat}%{ver_noncompat}
 #Release:   2%{?dist}
-Release:   2.git%{shortcommit}%{?dist}
+Release:   3.git%{shortcommit}%{?dist}
 
 
 Summary:   Multi-master File synchronization tool
@@ -254,6 +254,9 @@ fi
 %{_bindir}/unison-fsmonitor-%{ver_compat}
 
 %changelog
+* Tue Apr 13 2021 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.4-3.gita881780c
+- Updated to git commit a881780c8bfced48dcc0ed83130ef9e3487a36aa, which includes rc4.
+
 * Thu Jan 28 2021 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.4-1.git5f6a085d
 - Updated to rc1 of 2.51.
 - MacOS deployment fixes
