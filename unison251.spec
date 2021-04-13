@@ -1,4 +1,4 @@
-%global commit 5f6a085d9193ee1343969cd03362d797f3cc27ab
+%global commit a881780c8bfced48dcc0ed83130ef9e3487a36aa
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 # These is the exact upstream version we are packaging
@@ -27,7 +27,7 @@
 Name:      unison%{ver_compat_name}
 Version:   %{ver_compat}%{ver_noncompat}
 #Release:   2%{?dist}
-Release:   1.git%{shortcommit}%{?dist}
+Release:   2.git%{shortcommit}%{?dist}
 
 
 Summary:   Multi-master File synchronization tool
