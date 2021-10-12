@@ -1,4 +1,4 @@
-%global commit a881780c8bfced48dcc0ed83130ef9e3487a36aa
+%global commit a39c5727c9d2f7c419f2cb28f33ebd0177486969
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 # These is the exact upstream version we are packaging
@@ -27,7 +27,7 @@
 Name:      unison%{ver_compat_name}
 Version:   %{ver_compat}%{ver_noncompat}
 #Release:   2%{?dist}
-Release:   3.git%{shortcommit}%{?dist}
+Release:   4.git%{shortcommit}%{?dist}
 
 
 Summary:   Multi-master File synchronization tool
@@ -254,6 +254,10 @@ fi
 %{_bindir}/unison-fsmonitor-%{ver_compat}
 
 %changelog
+* Tue Oct 12 2021 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.4-4.gita39c5727
+- Updated to git commit a39c5727c9d2f7c419f2cb28f33ebd0177486969
+- Filter paths to remove dupes and ignored paths #580
+
 * Tue Apr 13 2021 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.4-3.gita881780c
 - Updated to git commit a881780c8bfced48dcc0ed83130ef9e3487a36aa, which includes rc4.
 
