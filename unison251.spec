@@ -27,7 +27,7 @@
 Name:      unison%{ver_compat_name}
 Version:   %{ver_compat}%{ver_noncompat}
 #Release:   2%{?dist}
-Release:   4.git%{shortcommit}%{?dist}
+Release:   %{ver_patch}.git%{shortcommit}%{?dist}
 
 
 Summary:   Multi-master File synchronization tool
