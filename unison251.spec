@@ -1,10 +1,10 @@
-%global commit a39c5727c9d2f7c419f2cb28f33ebd0177486969
+%global commit 3c7f38da6985839fc2639825edba8c6421f17e61
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 # These is the exact upstream version we are packaging
 %global ver_maj 2
 %global ver_min 51
-%global ver_patch 4
+%global ver_patch 5
 
 # All Unison versions sharing ver_compat are compatible
 # Examples are 2.13.15 and 2.13.16 -> ver_compat == 2.13
@@ -254,6 +254,9 @@ fi
 %{_bindir}/unison-fsmonitor-%{ver_compat}
 
 %changelog
+* Sat Feb 26 2022 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.5-1.git3c7f38da
+- Updated to git commit 3c7f38da6985839fc2639825edba8c6421f17e61 aka released 2.51.5
+
 * Tue Oct 12 2021 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.4-4.gita39c5727
 - Updated to git commit a39c5727c9d2f7c419f2cb28f33ebd0177486969
 - Filter paths to remove dupes and ignored paths #580
