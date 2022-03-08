@@ -146,7 +146,7 @@ cp -a %{SOURCE2} unison-manual.html
 # MAKEFLAGS=-j<N> breaks the build.
 #unset MAKEFLAGS
 
-%if 0%{?el8}
+%if 0%{?rhel} >= 8
 %else
 # we compile 2 versions: gtk2 ui and text ui
 make src NATIVE=true UISTYLE=gtk2 THREADS=true
@@ -161,7 +161,7 @@ mv src/unison-fsmonitor unison-fsmonitor
 %install
 mkdir -p %{buildroot}%{_bindir}
 
-%if 0%{?el8}
+%if 0%{?rhel} >= 8
 %else
 cp -a unison-gtk %{buildroot}%{_bindir}/unison-gtk-%{ver_compat}
 # symlink for compatibility
@@ -172,7 +172,7 @@ cp -a unison-text %{buildroot}%{_bindir}/unison-text-%{ver_compat}
 
 cp -a unison-fsmonitor %{buildroot}%{_bindir}/unison-fsmonitor-%{ver_compat}
 
-%if 0%{?el8}
+%if 0%{?rhel} >= 8
 %else
 mkdir -p %{buildroot}%{_datadir}/pixmaps
 cp -a icons/U.256x256x16m.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
@@ -183,8 +183,7 @@ desktop-file-install --dir %{buildroot}%{_datadir}/applications \
 
 # create/own alternatives target
 touch %{buildroot}%{_bindir}/unison
-
-%if 0%{?el8}
+%if 0%{?rhel} >= 8
 %else
 %posttrans gtk
 alternatives \
@@ -235,7 +234,7 @@ fi
 %files
 %doc src/COPYING src/NEWS src/README unison-manual.html
 
-%if 0%{?el8}
+%if 0%{?rhel} >= 8
 %else
 %files gtk
 %ghost %{_bindir}/unison
