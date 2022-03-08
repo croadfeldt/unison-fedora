@@ -61,7 +61,7 @@ Note that this package contains Unison version %{ver_compat}, and
 will never be upgraded to a different major version. Other packages
 exist if you require a different major version.
 
-%if 0%{?el8}
+%if 0%{?el} >= 8
 %else
 %package gtk
 
