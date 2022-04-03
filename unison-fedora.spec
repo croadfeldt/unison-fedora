@@ -142,6 +142,9 @@ EOF
 #additional documentation
 cp -a %{SOURCE2} unison-manual.html
 
+# Undefine auto build flags to fix linking issue on F36.
+%undefine _auto_set_build_flags
+
 %build
 # MAKEFLAGS=-j<N> breaks the build.
 #unset MAKEFLAGS
@@ -253,6 +256,9 @@ fi
 %{_bindir}/unison-fsmonitor-%{ver_compat}
 
 %changelog
+* Sun Apr 3 2022 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.5-2.git3c7f38da
+- Fix linking issue on F36
+
 * Sat Feb 26 2022 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.5-1.git3c7f38da
 - Updated to git commit 3c7f38da6985839fc2639825edba8c6421f17e61 aka released 2.51.5
 
