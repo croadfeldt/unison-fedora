@@ -1,10 +1,10 @@
-%global commit 3c7f38da6985839fc2639825edba8c6421f17e61
+%global commit 3c314bfe7384babd0ffb99dc4b38191a13f9a6b5
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 # These is the exact upstream version we are packaging
 %global ver_maj 2
-%global ver_min 51
-%global ver_patch 5
+%global ver_min 52
+%global ver_patch 0
 
 # All Unison versions sharing ver_compat are compatible
 # Examples are 2.13.15 and 2.13.16 -> ver_compat == 2.13
@@ -27,8 +27,8 @@
 Name:      unison%{ver_compat_name}
 Version:   %{ver_compat}%{ver_noncompat}
 #Release:   2%{?dist}
-Release:   %{ver_patch}.git%{shortcommit}%{?dist}
-
+#Release:   %{ver_patch}.git%{shortcommit}%{?dist}
+Release: 1.git%{shortcommit}%{?dist}
 
 Summary:   Multi-master File synchronization tool
 
@@ -235,7 +235,7 @@ fi
 
 
 %files
-%doc src/COPYING src/NEWS src/README unison-manual.html
+%doc src/COPYING NEWS.md README.md unison-manual.html
 
 %if 0%{?rhel} >= 8
 %else
@@ -256,7 +256,11 @@ fi
 %{_bindir}/unison-fsmonitor-%{ver_compat}
 
 %changelog
-* Sun Apr 3 2022 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.5-2.git3c7f38da
+* Sun April 3 2022 Chris Roadfeldt <chris@roadfeldt.com> - 2.52.0-1.git3c314bf
+- Updated to Version 2.52, git commit 3c314bfe7384babd0ffb99dc4b38191a13f9a6b5
+- Fixed release version of 2.51.5-5 in spec file changelog.
+
+* Sun Apr 3 2022 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.5-5.git3c7f38da
 - Fix linking issue on F36
 
 * Sat Feb 26 2022 Chris Roadfeldt <chris@roadfeldt.com> - 2.51.5-1.git3c7f38da
