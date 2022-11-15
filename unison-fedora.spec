@@ -1,9 +1,9 @@
-%global commit 3c314bfe7384babd0ffb99dc4b38191a13f9a6b5
+%global commit f3f7972bdab2770ea3085fad06c7939c2233ff7c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 # These is the exact upstream version we are packaging
 %global ver_maj 2
-%global ver_min 52
+%global ver_min 53
 %global ver_patch 0
 
 # All Unison versions sharing ver_compat are compatible
@@ -76,7 +76,7 @@ Requires: %name = %{version}-%{release}
 Provides:   %{name}-ui = %{version}-%{release}
 
 # Enforce the switch from unison to unisonN.NN
-Obsoletes: unison < 2.27.57-3
+Obsoletes: unison < 2.52.0-1
 # Let users just install "unison" if they want
 %if 0%{?provide_unison}
 Provides: unison = %{version}-%{release}
