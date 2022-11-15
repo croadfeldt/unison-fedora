@@ -68,7 +68,8 @@ exist if you require a different major version.
 Summary:   Multi-master File synchronization tool - gtk interface
 
 BuildRequires: ocaml-lablgtk-devel
-BuildRequires: gtk2-devel
+BuildRequires: ocaml-lablgtk3-devel
+BuildRequires: gtk3-devel
 BuildRequires: desktop-file-utils
 
 Requires: %name = %{version}-%{release}
@@ -256,7 +257,11 @@ fi
 %{_bindir}/unison-fsmonitor-%{ver_compat}
 
 %changelog
-* Sun April 3 2022 Chris Roadfeldt <chris@roadfeldt.com> - 2.52.0-1.git3c314bf
+* Tue Nov 15 2022 Chris Roadfeldt <chris@roadfeldt.com> - 2.53.0-1.gitf3f7972
+- Updated to Version 2.52, git commit f3f7972bdab2770ea3085fad06c7939c2233ff7c
+- Update to GTK3 for build and UISTYLE
+
+* Sun Apr 3 2022 Chris Roadfeldt <chris@roadfeldt.com> - 2.52.0-1.git3c314bf
 - Updated to Version 2.52, git commit 3c314bfe7384babd0ffb99dc4b38191a13f9a6b5
 - Fixed release version of 2.51.5-5 in spec file changelog.
 
