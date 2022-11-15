@@ -152,7 +152,7 @@ cp -a %{SOURCE2} unison-manual.html
 %if 0%{?rhel} >= 8
 %else
 # we compile 2 versions: gtk2 ui and text ui
-make src NATIVE=true UISTYLE=gtk2 THREADS=true
+make src NATIVE=true UISTYLE=gtk3 THREADS=true
 mv src/unison unison-gtk
 %endif
 
