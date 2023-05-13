@@ -1,10 +1,10 @@
-%global commit f3f7972bdab2770ea3085fad06c7939c2233ff7c
+%global commit 574a2716a9cd5096651d80f161250bf26df9a38f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 # These is the exact upstream version we are packaging
 %global ver_maj 2
 %global ver_min 53
-%global ver_patch 0
+%global ver_patch 3
 
 # All Unison versions sharing ver_compat are compatible
 # Examples are 2.13.15 and 2.13.16 -> ver_compat == 2.13
@@ -257,6 +257,11 @@ fi
 %{_bindir}/unison-fsmonitor-%{ver_compat}
 
 %changelog
+* Sat May 13 2023 Chris Roadfeldt <chris@roadfeldt.com> - 2.53.3-1.git574a271
+- Updated to Version 2.52, git commit 574a2716a9cd5096651d80f161250bf26df9a38f
+- Update to POSIX ACL sync
+- Improved ETA calculation and sync speed display
+
 * Tue Nov 15 2022 Chris Roadfeldt <chris@roadfeldt.com> - 2.53.0-1.gitf3f7972
 - Updated to Version 2.52, git commit f3f7972bdab2770ea3085fad06c7939c2233ff7c
 - Update to GTK3 for build and UISTYLE
