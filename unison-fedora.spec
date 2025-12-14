@@ -98,18 +98,6 @@ Provides:   %{name}-ui = %{version}-%{release}
 %description text
 This package provides the textual version of unison without graphical interface.
 
-%package static-ocaml-4.08.1
-
-Summary:   Multi-master File synchronization tool - text interface
-
-BuildRequires: emacs glibc-static
-Requires: %name = %{version}-%{release}
-
-Provides:   %{name}-ui = %{version}-%{release}
-
-%description static-ocaml-4.08.1
-This package provides the textual version of unison without graphical interface and statically linked to ocaml 4.08.1.
-
 %package fsmonitor
 
 Summary:   Multi-master File synchronization tool - fsmonitor
