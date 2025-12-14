@@ -77,7 +77,7 @@ Requires: %name = %{version}-%{release}
 Provides:   %{name}-ui = %{version}-%{release}
 
 # Enforce the switch from unison to unisonN.NN
-Obsoletes: unison < 2.52.0-1
+Obsoletes: unison < 2.53.0-1
 # Let users just install "unison" if they want
 %if 0%{?provide_unison}
 Provides: unison = %{version}-%{release}
