@@ -1,10 +1,10 @@
-%global commit 574a2716a9cd5096651d80f161250bf26df9a38f
+%global commit 36bdb88f96477d121d5d7b49a93fc5e316b6534c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 # These is the exact upstream version we are packaging
 %global ver_maj 2
 %global ver_min 53
-%global ver_patch 3
+%global ver_patch 8
 
 # All Unison versions sharing ver_compat are compatible
 # Examples are 2.13.15 and 2.13.16 -> ver_compat == 2.13
@@ -257,6 +257,12 @@ fi
 %{_bindir}/unison-fsmonitor-%{ver_compat}
 
 %changelog
+* Sun Dec 14 2025 Chris Roadfeldt <chris@roadfeldt.com> - 2.53.8-1.git36bdb88
+- Updated to Version 2.53.8, git commit 36bdb88f96477d121d5d7b49a93fc5e316b6534c
+- Add reflink ability
+- Don't write fpcache if not needed
+- Don't install fsmonitor.py
+
 * Sat May 13 2023 Chris Roadfeldt <chris@roadfeldt.com> - 2.53.3-1.git574a271
 - Updated to Version 2.52, git commit 574a2716a9cd5096651d80f161250bf26df9a38f
 - Update to POSIX ACL sync
