@@ -71,6 +71,7 @@ BuildRequires: ocaml-lablgtk3-devel
 BuildRequires: gtk3-devel
 BuildRequires: desktop-file-utils
 BuildRequires: texlive-metafont
+BuildRequires: texlive-ec
 
 Requires: %name = %{version}-%{release}
 
