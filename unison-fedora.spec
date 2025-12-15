@@ -42,7 +42,7 @@ Source0:   https://github.com/bcpierce00/unison/archive/%{commit}/%{name}-%{shor
 # BuildArch:     noarch
 ExcludeArch:   sparc64 s390 s390x
 
-BuildRequires: ocaml texlive-latex-bin-bin
+BuildRequires: ocaml texlive-latex-bin-bin texlive-metafont texlive-ec
 
 Requires:   %{name}-ui = %{version}-%{release}
 
@@ -70,8 +70,6 @@ BuildRequires: ocaml-lablgtk-devel
 BuildRequires: ocaml-lablgtk3-devel
 BuildRequires: gtk3-devel
 BuildRequires: desktop-file-utils
-BuildRequires: texlive-metafont
-BuildRequires: texlive-ec
 
 Requires: %name = %{version}-%{release}
 
