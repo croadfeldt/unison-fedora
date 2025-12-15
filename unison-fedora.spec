@@ -36,7 +36,6 @@ Group:     Applications/File
 License:   GPLv3+
 URL:       https://www.cis.upenn.edu/~bcpierce/unison
 Source0:   https://github.com/bcpierce00/unison/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
-Source2:   https://www.cis.upenn.edu/~bcpierce/unison/download/releases/beta/unison-manual.html
 
 
 # can't make this noarch (rpmbuild fails about unpackaged debug files)
@@ -128,9 +127,6 @@ StartupNotify=true
 Categories=Utility;
 EOF
 
-#additional documentation
-cp -a %{SOURCE2} unison-manual.html
-
 # Undefine auto build flags to fix linking issue on F36.
 %undefine _auto_set_build_flags
 
@@ -150,6 +146,9 @@ mv src/unison unison-text
 
 make src NATIVE=true THREADS=true fsmonitor
 mv src/unison-fsmonitor unison-fsmonitor
+
+
+make src NATIVE=true THREADS=true docs
 
 %install
 mkdir -p %{buildroot}%{_bindir}
@@ -225,7 +224,7 @@ fi
 
 
 %files
-%doc src/COPYING NEWS.md README.md unison-manual.html
+%doc src/COPYING NEWS.md README.md doc/unison-manual.pdf doc/unison-manual.tex
 
 %if 0%{?rhel} >= 8
 %else
@@ -251,6 +250,7 @@ fi
 - Add reflink ability
 - Don't write fpcache if not needed
 - Don't install fsmonitor.py
+- Removed unison-manual, switch to builtin version
 
 * Sat May 13 2023 Chris Roadfeldt <chris@roadfeldt.com> - 2.53.3-1.git574a271
 - Updated to Version 2.52, git commit 574a2716a9cd5096651d80f161250bf26df9a38f
